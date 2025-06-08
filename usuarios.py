@@ -34,3 +34,10 @@ def login_usuario(usuarios):
             return user
     print("Usuario o contraseña incorrectos.")
     return None
+
+def mostrar_datos_personales(usuario):
+    print(f'''\n
+        --- Datos Personales ---
+        Nombre: {usuario['nombre']}
+        Usuario: {usuario['username']}
+        Rol: {usuario['rol']}''')
