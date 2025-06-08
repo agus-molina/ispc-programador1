@@ -17,3 +17,16 @@ def ajuste_automatico(inventario, modo):
                 dispositivo["estado"] = False
             elif dispositivo.get("tipo") == "camara":
                 dispositivo["estado"] = True
+def ajuste_automatico(inventario, modo):
+    for dispositivo in inventario:
+        tipo = dispositivo.get("tipo", "").lower()
+        if modo == "NOCHE":
+            if tipo in ["electrodomestico", "luces"]:
+                dispositivo["estado"] = False 
+            elif tipo == "camara":
+                dispositivo["estado"] = True
+        elif modo == "DIA":
+            if tipo in ["electrodomestico", "luces"]:
+                dispositivo["estado"] = True
+            elif tipo == "camara":
+                dispositivo["estado"] = False
