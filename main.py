@@ -13,15 +13,17 @@ Permitir modificar el rol de un usuario.
 ** El usuario Admin, puede ser el primer usuario que se registra.**
  '''
 
-from funciones import (
-    modo_actual_programa,
-    mostrar_menu,
+from admin_dispositivos import (
     listar_dispositivos,
     buscar_dispositivo,
     agregar_dispositivo,
     eliminar_dispositivo,
+)
+from automatizaciones import (
+    modo_actual_programa,
     ajuste_automatico
 )
+from menu import mostrar_menu
 
 def main():
     print('*** BIENVENIDO AL SISTEMA SMART SOLUTIONS ***')
