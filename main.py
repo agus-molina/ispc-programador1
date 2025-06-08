@@ -24,10 +24,15 @@ from automatizaciones import (
     ajuste_automatico
 )
 from menu import mostrar_menu
+from usuarios import (
+    registrar_usuario,
+    login_usuario
+)
 
 def main():
     print('*** BIENVENIDO AL SISTEMA SMART SOLUTIONS ***')
 
+    usuarios = []
     inventario = []
     contador_id = 0
     login = True
@@ -35,6 +40,23 @@ def main():
     modo = modo_actual_programa()
     ajuste_automatico(inventario, modo)
     print(f'*** El sistema está en modo {modo} ***')
+
+    # Flujo por si no hay usuarios registrados
+    if not usuarios:
+        print("No existen usuarios registrados. Registrá al usuario ADMIN.")
+        while not registrar_usuario(usuarios, primer_usuario=True):
+            pass
+
+    usuario_actual = None
+    while not usuario_actual:
+        print("\n1. Iniciar sesión\n2. Registrar usuario estándar")
+        opcion = input("Seleccione una opción: ").strip()
+        if opcion == "1":
+            usuario_actual = login_usuario(usuarios)
+        elif opcion == "2":
+            registrar_usuario(usuarios)
+        else:
+            print("Opción inválida.")
 
     while login:
         mostrar_menu()
