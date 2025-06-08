@@ -24,6 +24,15 @@ def main():
 
     while login:
         mostrar_menu()
+        seleccion_valida = False
+        while not seleccion_valida:
+            entrada = input("Seleccione el número de la opción deseada: ").strip()
+            if entrada.isdigit():
+                seleccion = int(entrada)
+                seleccion_valida = True
+            else:
+                print("Entrada inválida. Por favor, ingrese un número correspondiente a las opciones del menú.\n")
+
         seleccion = int(input("Seleccione el número de la opción deseada: ").strip())
         match seleccion:
             case 1:
@@ -43,15 +52,19 @@ def main():
                 agregar_dispositivo(inventario, contador_id)
                 contador_id += 1
             case 4:
-                try:
-                    id_a_eliminar = int(input('Ingrese la ID del dispositivo a Desvincular: ').strip())
-                    eliminado = eliminar_dispositivo(inventario, id_a_eliminar)
-                    if eliminado:
-                        print(f'Dispositivo con ID {id_a_eliminar} eliminado correctamente.')
-                    else:
-                        print(f'No se encontró un dispositivo con ID {id_a_eliminar}.')
-                except ValueError:
-                    print('Por favor, ingrese un número válido para la ID.')
+                if inventario:
+                    print("\n*** Dispositivos disponibles para eliminar ***")
+                    for dispositivo in inventario:
+                        print(f"ID: {dispositivo.get('id')} - Nombre: {dispositivo.get('nombre')}")
+                    try:
+                        id_a_eliminar = int(input('Ingrese la ID del dispositivo a Desvincular: ').strip())
+                        eliminado = eliminar_dispositivo(inventario, id_a_eliminar)
+                        if eliminado:
+                            print(f'Dispositivo con ID {id_a_eliminar} eliminado correctamente.')
+                        else:
+                            print(f'No se encontró un dispositivo con ID {id_a_eliminar}.')
+                    except ValueError:
+                        print('Por favor, ingrese un número válido para la ID.')
             case 5:
                 print('Muchas gracias por utilizar Smart Solutions...')
                 print('Saliendo del sistema...')
