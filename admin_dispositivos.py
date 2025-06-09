@@ -41,9 +41,12 @@ def agregar_dispositivo(inventario, contador_id):
          Volumen: {dispositivo.get('volumen')}
          Infrarrojo: {dispositivo.get('infrarrojo')}''')
     
-def eliminar_dispositivo(inventario, id_a_eliminar):
-    for i, dispositivo in enumerate(inventario):
-        if dispositivo.get('id') == id_a_eliminar:
-            del inventario[i]
-            return True
-    return False
+# Validación Función eliminar dispositivo
+def eliminar_dispositivo(inventario, indice):
+    if 0 <= indice < len(inventario):
+        eliminado = inventario.pop(indice)
+        print(f"Dispositivo '{eliminado.get('nombre')}' eliminado con éxito.")
+    else:
+        print("Índice fuera de rango. No se pudo eliminar.")
+
+
