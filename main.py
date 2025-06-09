@@ -23,19 +23,21 @@ from automatizaciones import (
     modo_actual_programa,
     ajuste_automatico
 )
-from menu import mostrar_menu
+from menu import menu_admin, menu_usuario_estandar
 from usuarios import (
     registrar_usuario,
     login_usuario
 )
 
 def main():
+
     print('*** BIENVENIDO AL SISTEMA SMART SOLUTIONS ***')
 
     usuarios = []
     inventario = []
     contador_id = 0
-    login = True
+    login = False
+    usuario_actual = None
 
     modo = modo_actual_programa()
     ajuste_automatico(inventario, modo)
@@ -44,23 +46,34 @@ def main():
     # Flujo por si no hay usuarios registrados
     if not usuarios:
         print("No existen usuarios registrados. Registrá al usuario ADMIN.")
-        while not registrar_usuario(usuarios, primer_usuario=True):
-            pass
+        registrar_usuario(usuarios, True)
 
-    usuario_actual = None
     while not usuario_actual:
-        print("\n1. Iniciar sesión\n2. Registrar usuario estándar")
-        opcion = input("Seleccione una opción: ").strip()
-        if opcion == "1":
-            usuario_actual = login_usuario(usuarios)
-        elif opcion == "2":
-            registrar_usuario(usuarios)
-        else:
+        try:
+            print("\n1. Iniciar sesión\n2. Registrar usuario estándar")
+            opcion = int(input("Seleccione una opción: ").strip())
+            match opcion:
+                case 1:
+                    usuario_actual = login_usuario(usuarios)
+                    if usuario_actual:
+                        login = True
+                case 2:
+                    registrar_usuario(usuarios)
+                case _:
+                    print("Opción inválida.")
+        except ValueError:
             print("Opción inválida.")
 
     while login:
-        mostrar_menu()
         try:
+            if usuario_actual["rol"] == "admin":
+                login = menu_admin(modo, contador_id, inventario)
+            else:
+                login = menu_usuario_estandar(usuario_actual, inventario)
+        except ValueError:
+            print("Opción inválida.\n")
+
+        """try:
             seleccion = int(input("Seleccione el número de la opción deseada: ").strip())
             match seleccion:
                 case 1:
@@ -93,7 +106,7 @@ def main():
                 case _:
                     print("Opción inválida. Por favor, ingrese un número que corresponda\n")
         except ValueError:
-            print("Opción inválida.\n")
+            print("Opción inválida.\n")"""
 
 if __name__ == "__main__":
     main()

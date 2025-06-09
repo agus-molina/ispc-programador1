@@ -2,6 +2,7 @@
 MODULO CON PROPIEDADES EN COMUN PARA TODOS LOS USUARIOS
 '''
 
+# Cuando no existe el usuario lo registra /NO TIENE VALIDACIONES O LIMITE DE CARACTERES
 def registrar_usuario(usuarios, primer_usuario=False):
     print("\n*** Registro de Usuario ***")
     nombre = input("Nombre completo: ").strip()
@@ -24,6 +25,7 @@ def registrar_usuario(usuarios, primer_usuario=False):
     print(f"Usuario {'Admin' if rol == 'admin' else 'Estándar'} registrado con éxito.")
     return True
 
+# Login sencillo sin validaciones o limites
 def login_usuario(usuarios):
     print("\n*** Iniciar Sesión ***")
     username = input("Usuario: ").strip()

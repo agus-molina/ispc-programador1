@@ -9,23 +9,17 @@ def modo_actual_programa():
         return "DIA"
     else:
         return "NOCHE"
-    
+
 def ajuste_automatico(inventario, modo):
-    if modo == "NOCHE":
-        for dispositivo in inventario:
-            if dispositivo.get("tipo").lower() == "electrodomestico" or dispositivo.get("tipo").lower() == "luces":
-                dispositivo["estado"] = False
-            elif dispositivo.get("tipo") == "camara":
-                dispositivo["estado"] = True
-def ajuste_automatico(inventario, modo):
+    tipo = None
     for dispositivo in inventario:
-        tipo = dispositivo.get("tipo", "").lower()
+        tipo = dispositivo["tipo"]
         if modo == "NOCHE":
             if tipo in ["electrodomestico", "luces"]:
                 dispositivo["estado"] = False 
             elif tipo == "camara":
                 dispositivo["estado"] = True
-        elif modo == "DIA":
+        else:
             if tipo in ["electrodomestico", "luces"]:
                 dispositivo["estado"] = True
             elif tipo == "camara":
