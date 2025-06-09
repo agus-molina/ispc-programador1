@@ -63,7 +63,7 @@ def main():
             if usuario_actual["rol"] == "admin":
                 login = menu_admin(modo, contador_id, usuarios, inventario)
             else:
-                login = menu_usuario_estandar(usuario_actual, inventario)
+                login = menu_usuario_estandar(usuario_actual, modo, inventario)
         except ValueError:
             print("Opción inválida.\n")
 

@@ -11,12 +11,12 @@ from admin_dispositivos import (
 from automatizaciones import ajuste_automatico
 from usuarios import mostrar_datos_personales, cambiar_rol
 
-def menu_usuario_estandar(usuario, inventario):
+def menu_usuario_estandar(usuario, modo, inventario):
 
     print(f'''\n--- Menú Usuario: {usuario['nombre']} ---
-        1. Consultar datos personales")
-        2. Ejecutar automatización")
-        3. Consultar dispositivos")
+        1. Consultar datos personales
+        2. Ejecutar automatización
+        3. Consultar dispositivos
         4. Cerrar sesión''')
     
     opcion = int(input("Seleccione una opción: ").strip())
@@ -25,7 +25,7 @@ def menu_usuario_estandar(usuario, inventario):
             mostrar_datos_personales(usuario)
             return True
         case 2:
-            ajuste_automatico(inventario)
+            ajuste_automatico(inventario, modo)
             return True
         case 3:
             listar_dispositivos(inventario)
