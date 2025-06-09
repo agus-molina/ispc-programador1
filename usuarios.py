@@ -43,3 +43,10 @@ def mostrar_datos_personales(usuario):
         Nombre: {usuario['nombre']}
         Usuario: {usuario['username']}
         Rol: {usuario['rol']}''')
+
+# cambia rol a admin pero no avisa si el usuario elegido no existe
+def cambiar_rol(usuarios, eleccion):
+    for usuario in usuarios:
+        if eleccion == usuario["nombre"]:
+            usuario["rol"] = "admin"
+            print(f"Rol de {usuario["nombre"]} cambiado exitosamente!")

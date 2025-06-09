@@ -9,7 +9,7 @@ from admin_dispositivos import (
     eliminar_dispositivo
 )
 from automatizaciones import ajuste_automatico
-from usuarios import mostrar_datos_personales
+from usuarios import mostrar_datos_personales, cambiar_rol
 
 def menu_usuario_estandar(usuario, inventario):
 
@@ -18,6 +18,7 @@ def menu_usuario_estandar(usuario, inventario):
         2. Ejecutar automatización")
         3. Consultar dispositivos")
         4. Cerrar sesión''')
+    
     opcion = int(input("Seleccione una opción: ").strip())
     match opcion:
         case 1:
@@ -36,12 +37,12 @@ def menu_usuario_estandar(usuario, inventario):
             print("Opción inválida.")
             return True
 
-def menu_admin(modo, contador_id, inventario):
+def menu_admin(modo, contador_id, usuarios, inventario):
 
     print(f'''\n--- Menú ADMIN ---
         1. Consultar automatizaciones activas
-        2. Gestionar dispositivos")
-        3. Modificar rol de usuario")
+        2. Gestionar dispositivos
+        3. Modificar rol de usuario
         4. Cerrar sesión\n''')
 
     opcion = int(input("Seleccione una opción: ").strip())
@@ -71,6 +72,8 @@ def menu_admin(modo, contador_id, inventario):
                 case _:
                     print("Opción inválida.")
         case 3:
+            eleccion = input("Indique el nombre del usuario a modificar: ").strip()
+            cambiar_rol(usuarios, eleccion)
             return True
         case 4:
             print("Cerrando sesión...\n")
