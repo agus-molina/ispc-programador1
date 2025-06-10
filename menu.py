@@ -67,7 +67,9 @@ def menu_admin(modo, contador_id, usuarios, inventario):
                     ajuste_automatico(inventario, modo)
                     return True
                 case 3:
-                    eliminar_dispositivo(inventario)
+                    listar_dispositivos(inventario)
+                    dispositivo = int(input("Ingrese el ID del dispositivo por eliminar: ").strip())
+                    eliminar_dispositivo(inventario, dispositivo)
                     return True
                 case 4:
                     nombre = input("Ingresa el nombre del dispositivo: ").strip()
