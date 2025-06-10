@@ -61,16 +61,21 @@ def menu_admin(modo, contador_id, usuarios, inventario):
             match opcion:
                 case 1:
                     listar_dispositivos(inventario)
+                    return True
                 case 2:
                     agregar_dispositivo(inventario, contador_id)
-                    ajuste_automatico(inventario)
+                    ajuste_automatico(inventario, modo)
+                    return True
                 case 3:
                     eliminar_dispositivo(inventario)
+                    return True
                 case 4:
                     nombre = input("Ingresa el nombre del dispositivo: ").strip()
                     buscar_dispositivo(inventario, nombre)
+                    return True
                 case _:
                     print("Opción inválida.")
+                    return True
         case 3:
             eleccion = input("Indique el nombre del usuario a modificar: ").strip()
             cambiar_rol(usuarios, eleccion)
