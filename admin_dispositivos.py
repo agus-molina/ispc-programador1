@@ -1,24 +1,28 @@
 '''
 MODULO QUE MANEJA DISPOSITIVOS
 '''
-import datos
 
+import datos
 
 def listar_dispositivos():
     if not datos.inventario:
         print("No hay dispositivos vinculados aún.")
-    else:
-        print("Listado Completo de Dispositivos:")
-        for i, dispositivo in enumerate(datos.inventario):
-            print(f'''\n{i + 1} - ID: {dispositivo.get('id')}
+        return
+    print("Listado Completo de Dispositivos:")
+    for dispositivo in datos.inventario:
+            print(f'''\nID: {dispositivo.get('id')}
             Nombre: {dispositivo.get('nombre')}
             Tipo: {dispositivo.get('tipo')}
             Estado: {dispositivo.get('estado')}''')
 
 def buscar_dispositivo(nombre):
+    nombre_busqueda = nombre.strip().lower()
     for dispositivo in datos.inventario:
-        if dispositivo.get("nombre") == nombre:
+        if dispositivo.get("nombre", "").lower() == nombre_busqueda:
+            print(f"Dispositivo encontrado:")
+            print(f"ID: {dispositivo['id']}, Nombre:{dispositivo['nombre']}, Tipo: {dispositivo['tipo']}, Estado: {dispositivo['estado']}")
             return dispositivo
+    print(f"No se encontró un dispositivo con ese nombre.")
     return None
 
 def agregar_dispositivo():
@@ -45,11 +49,13 @@ def agregar_dispositivo():
          Infrarrojo: {dispositivo.get('infrarrojo')}''')
     
 # Validación Función eliminar dispositivo
-def eliminar_dispositivo(indice):
-    if 0 <= indice < len(datos.inventario):
-        eliminado = datos.inventario.pop(indice)
-        print(f"Dispositivo '{eliminado.get('nombre')}' eliminado con éxito.")
-    else:
-        print("Índice fuera de rango. No se pudo eliminar.")
+def eliminar_dispositivo(id_dispositivo):
+    for i, d in enumerate(datos.inventario):
+        if d.get('id') == id_dispositivo:
+            eliminado = datos.inventario.pop(i)
+            print(f"Dispositivo '{eliminado.get('nombre')}' eliminado con éxito.")
+            return True
+    print("No se encontró un dispositivo con ese ID. No se pudo eliminar.")
+    return False
 
 

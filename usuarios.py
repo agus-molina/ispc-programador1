@@ -1,7 +1,8 @@
 '''
 MODULO CON PROPIEDADES EN COMUN PARA TODOS LOS USUARIOS
 '''
-from datos import usuarios
+
+import datos
 
 # Cuando no existe el usuario lo registra /NO TIENE VALIDACIONES O LIMITE DE CARACTERES
 def registrar_usuario(primer_usuario=False):
@@ -12,12 +13,12 @@ def registrar_usuario(primer_usuario=False):
     rol = 'admin' if primer_usuario else 'estandar'
 
     # Verificar que el usuario no exista
-    for user in usuarios:
+    for user in datos.usuarios:
         if user['username'] == username:
             print("Ya existe un usuario con ese nombre de usuario.")
             return False
 
-    usuarios.append({
+    datos.usuarios.append({
         'nombre': nombre,
         'username': username,
         'password': password,
@@ -31,7 +32,7 @@ def login_usuario():
     print("\n*** Iniciar Sesión ***")
     username = input("Usuario: ").strip()
     password = input("Contraseña: ").strip()
-    for user in usuarios:
+    for user in datos.usuarios:
         if user['username'] == username and user['password'] == password:
             print(f"Bienvenido, {user['nombre']}! Rol: {user['rol']}")
             return user
@@ -47,7 +48,10 @@ def mostrar_datos_personales(usuario):
 
 # cambia rol a admin pero no avisa si el usuario elegido no existe
 def cambiar_rol(eleccion):
-    for usuario in usuarios:
-        if eleccion == usuario["nombre"]:
+    for usuario in datos.usuarios:
+        if eleccion == usuario["nombre"] or eleccion == usuario["username"]:
             usuario["rol"] = "admin"
-            print(f"Rol de {usuario['nombre']} cambiado exitosamente!")
+            print(f"Rol de {usuario['nombre']}  cambiado exitosamente!")
+            return True
+    print("No se encontró un usuario con ese nombre o username.")
+    return False

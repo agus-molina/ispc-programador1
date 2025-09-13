@@ -10,30 +10,44 @@ from admin_dispositivos import (
 )
 from automatizaciones import ajuste_automatico
 from usuarios import mostrar_datos_personales, cambiar_rol
-from datos import inventario, usuarios
 
-def menu_usuario_estandar(usuario, modo):
+def menu_usuario_estandar(usuario, modo, inventario):
 
     print(f'''\n--- Menú Usuario: {usuario['nombre']} ---
         1. Consultar datos personales
         2. Ejecutar automatización
         3. Consultar dispositivos
-        4. Cerrar sesión''')
+        4. Cerrar sesión
+        5. Salir del sistema
+        ''')
     
-    opcion = int(input("Seleccione una opción: ").strip())
+    opcion_txt = input("Seleccione una opción: ").strip()
+    if not opcion_txt.isdigit():
+        print("Opción inválida.")
+        return True
+    opcion = int(opcion_txt)
     match opcion:
         case 1:
             mostrar_datos_personales(usuario)
             return True
         case 2:
-            ajuste_automatico(modo)
+            resultados = ajuste_automatico(modo)
+            print("\nResultados de la automatización:")
+            if resultados:
+                for r in resultados:
+                    print("-", r)
+            else: 
+                print("No hay dispositivos para automatizar")
             return True
         case 3:
             listar_dispositivos()
             return True
         case 4:
             print("Cerrando sesión...\n")
-            return False
+            return "logout"
+        case 5:
+            print("Saliendo del sistema...\n")
+            return "exit"
         case _:
             print("Opción inválida.")
             return True
@@ -44,12 +58,18 @@ def menu_admin(modo):
         1. Consultar automatizaciones activas
         2. Gestionar dispositivos
         3. Modificar rol de usuario
-        4. Cerrar sesión\n''')
+        4. Cerrar sesión
+        5. Salir del sistema\n''')
 
-    opcion = int(input("Seleccione una opción: ").strip())
+    opcion_txt = input("Seleccione una opción: ").strip()
+    if not opcion_txt.isdigit():
+        print("Opción inválida.")
+        return True
+    opcion = int(opcion_txt)
     match opcion:
         case 1:
             print(f'El sistema esta en modo {modo}!')
+            listar_dispositivos()
             return True
         case 2:
             print(f'''\n--- Gestión de Dispositivos: ---
@@ -58,8 +78,13 @@ def menu_admin(modo):
             3. Eliminar
             4. Buscar\n''')
 
-            opcion = int(input("Seleccione una opción: ").strip())
-            match opcion:
+            subop_txt = input("Seleccione una opción: ").strip()
+            if not subop_txt.isdigit():
+                print("Opción inválida.")
+                return True
+            subop = int(subop_txt)
+
+            match subop:
                 case 1:
                     listar_dispositivos()
                     return True
@@ -69,8 +94,12 @@ def menu_admin(modo):
                     return True
                 case 3:
                     listar_dispositivos()
-                    dispositivo = int(input("Ingrese el ID del dispositivo por eliminar: ").strip())
-                    eliminar_dispositivo(dispositivo)
+                    id_txt = input("Ingrese el ID del dispositivo por eliminar: ").strip()
+                    if not id_txt.isdigit():
+                        print("ID inválido.")
+                        return True
+                    dispositivo_id = int(id_txt)
+                    eliminar_dispositivo(dispositivo_id)
                     return True
                 case 4:
                     nombre = input("Ingresa el nombre del dispositivo: ").strip()
@@ -85,7 +114,11 @@ def menu_admin(modo):
             return True
         case 4:
             print("Cerrando sesión...\n")
-            return False
+            return "logout"
+        case 5:
+            print("Saliendo del sistema...\n")
+            return "exit"
+
         case _:
             print("Opción inválida.")
             return True

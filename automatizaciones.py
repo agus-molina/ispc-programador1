@@ -2,7 +2,7 @@
 MODULO QUE MANEJA AUTOMATIZACIONES
 '''
 from datetime import datetime
-from datos import inventario
+import datos
 
 def modo_actual_programa():
     tiempo = datetime.now()
@@ -12,16 +12,21 @@ def modo_actual_programa():
         return "NOCHE"
 
 def ajuste_automatico(modo):
-    tipo = None
-    for dispositivo in inventario:
-        tipo = dispositivo["tipo"]
+    mensajes = []
+    for dispositivo in datos.inventario:
+        tipo = dispositivo.get("tipo", "").lower()
         if modo == "NOCHE":
             if tipo in ["electrodomestico", "luces"]:
-                dispositivo["estado"] = False 
+                dispositivo["estado"] = False
+                mensajes.append(f"El dispositivo {dispositivo['nombre']} se ha apagado.")
             elif tipo == "camara":
                 dispositivo["estado"] = True
-        else:
+                mensajes.append(f"La cámara {dispositivo['nombre']} se ha activado.")
+        else:  # DÍA
             if tipo in ["electrodomestico", "luces"]:
                 dispositivo["estado"] = True
+                mensajes.append(f"El dispositivo {dispositivo['nombre']} se ha encendido.")
             elif tipo == "camara":
                 dispositivo["estado"] = False
+                mensajes.append(f"La cámara {dispositivo['nombre']} se ha apagado.")
+    return mensajes
