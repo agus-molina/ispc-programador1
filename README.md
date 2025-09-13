@@ -61,5 +61,5 @@ Correcciones de la Evidencia 3 implementadas
 
 - Automatizaciones ahora informan al usuario sobre su estado, esté activada o no.
 
--Cerrar sesión implementado correctamente (opción de logout presente).
+- Cerrar sesión implementado correctamente (opción de logout presente).
 
