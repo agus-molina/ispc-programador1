@@ -2,7 +2,7 @@
 MODULO CON PROPIEDADES EN COMUN PARA TODOS LOS USUARIOS
 '''
 
-import datos
+import EV3.datos as datos
 
 # Cuando no existe el usuario lo registra /NO TIENE VALIDACIONES O LIMITE DE CARACTERES
 def registrar_usuario(primer_usuario=False):

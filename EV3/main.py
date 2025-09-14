@@ -13,17 +13,17 @@ Permitir modificar el rol de un usuario.
 ** El usuario Admin, puede ser el primer usuario que se registra.**
  '''
 
-from automatizaciones import (
+from EV3.automatizaciones import (
     modo_actual_programa,
     ajuste_automatico
 )
-from menu import menu_admin, menu_usuario_estandar
-from usuarios import (
+from EV3.menu import menu_admin, menu_usuario_estandar
+from EV3.usuarios import (
     registrar_usuario,
     login_usuario
 )
 
-import datos
+import EV3.datos as datos
 
 
 def main():

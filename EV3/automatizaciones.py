@@ -2,7 +2,7 @@
 MODULO QUE MANEJA AUTOMATIZACIONES
 '''
 from datetime import datetime
-import datos
+import EV3.datos as datos
 
 def modo_actual_programa():
     tiempo = datetime.now()

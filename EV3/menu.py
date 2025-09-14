@@ -2,14 +2,14 @@
 MODULO DE PRESENTACION DEL MENU
 '''
 
-from admin_dispositivos import (
+from EV3.admin_dispositivos import (
     listar_dispositivos,
     buscar_dispositivo,
     agregar_dispositivo,
     eliminar_dispositivo
 )
-from automatizaciones import ajuste_automatico
-from usuarios import mostrar_datos_personales, cambiar_rol
+from EV3.automatizaciones import ajuste_automatico
+from EV3.usuarios import mostrar_datos_personales, cambiar_rol
 
 def menu_usuario_estandar(usuario, modo, inventario):
 

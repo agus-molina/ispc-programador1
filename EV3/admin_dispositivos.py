@@ -2,7 +2,7 @@
 MODULO QUE MANEJA DISPOSITIVOS
 '''
 
-import datos
+import EV3.datos as datos
 
 def listar_dispositivos():
     if not datos.inventario:
