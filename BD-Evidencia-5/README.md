@@ -11,4 +11,12 @@ INSTRUCCIONES DE USO:
         (Hay que presionar el botón rosa que dice "RUN" para correr el código)
 
     - En caso de no funcionar el link, a continuación explicaremos como hacerlo manualmente:
+     1- Ingresar a https://onecompiler.com/
+     2-Seleccionar el motor MySQL
+     3-Borrar el código predefinido
+     4-Seleccionar el simbolo + que se encuentra del lado izquierdo de la página, seleccionar Add init schema, aceptar y borrar todo lo que aparece predefinido.
+     5-En el archivo init.sql pegar todo el código de DLL
+     6-En el archivo queries.sql  pegar el código DML
+     7-Por último hacer click RUN ubicado en la parte superior derecha.
+
         
