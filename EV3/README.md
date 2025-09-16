@@ -1,34 +1,5 @@
-EVIDENCIA INTEGRADORA Nº 3
 
-YA HECHO:
-- ARCHIVOS BASE SUBIDOS
-- PRIMERAS CORRECCIONES REALIZADAS
-- reorganizar funciones donde corresponda para poder despues borrar el archivo funciones.py
-- mejorar dichas funciones y agregar las que hagan falta para funcionalidad nueva
-- que el borrado de dispositivos se haga en su modulo como funcion extra
-- cambiar rol de usuario
-- testear todo
-- tener pensado el caso especifico que se va a usar como ejemplo para 
-
-EVIDENCIA INTEGRADORA Nº 3 // CORRECCIONES POR HACER
-
-¡Buen trabajo! A continuación algunos puntos para revisar/mejorar:
-
-    Faltan validaciones. Ej, si en el menú ingresa un carácter en lugar de un número, falla.
-    No utilizar try except para validaciones de tipos de datos. Existen métodos que Python nos provee para esto o bien utilizar try except ValueError
-    Eliminar dispositivo. Al no solicitar el id, el usuario difícilmente sabe el identificador. A menos que le muestra una lista de los dispositivos con su id
-    No hace falta pasar las listas por argumentos, en su lugar utilizar variables no locales.
-    Revisar la modularidad. El módulo funciones quizás deba separarse en varios módulos (respetar principio de responsabilidad unica)
-    Falta modo día.
-
-Vamos bien, no olvidar correcciones previas para futuras entregas. A continuación algunos puntos para revisar/corregir:
-
-    Cerrar sesión no debería sacarme del menú. Especificar una opción para ello.
-    Al ejecutar la automatización, sea que esté o no activada, debe brindar información al usuario.
-    Buscar por nombre, no informa al usuario si encontró o no el dispositivo. Revisar el resto.
-    EV2. Faltan algunas correcciones
-
-// QUE CAMBIAMOS:
+//  CAMBIOS:
 Correcciones de la Evidencia 3 implementadas
 
 - Archivos base subidos al repositorio.
@@ -62,4 +33,19 @@ Correcciones de la Evidencia 3 implementadas
 - Automatizaciones ahora informan al usuario sobre su estado, esté activada o no.
 
 - Cerrar sesión implementado correctamente (opción de logout presente).
+
+ cambios (EVIDENCIA 5):
+
+-Caso específico definido para demo fue eliminado.
+
+-Se sustituyó Modo Día por Modo Noche y Modo Meditación.
+         Modo Meditación: altera la intensidad de la luz para crear un ambiente más suave. Este modo ya está integrado en el flujo de automatización.
+
+-Con estos cambios, se realizaron ajustes para que la transiciones entre modos sean posibles y coherentes con el estado actual del sistema.
+
+-se ajusto para que el tipo sea Luz, no luces
+
+-Se cambio la lógica de la automatización en el main para que se ejecute una vez que el usuario ya este logeado.
+
+-se realizo cambios para que el programa tenga en cuenta la posibilidad de que no haya ninguna automatizacion activada.
 
