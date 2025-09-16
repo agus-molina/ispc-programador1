@@ -39,16 +39,18 @@ class Dispositivo:
         self.__estado = False
 
 class Camara(Dispositivo):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, tipo="camara", **kwargs)
+    def __init__(self, id, nombre, estado=False, infrarrojo=False):
+        super().__init__(id=id, nombre=nombre, tipo="camara", estado=estado)
+        self.__infrarrojo = infrarrojo
 
     def interruptor_infrarrojo(self):
         if self.__infrarrojo is not None:
             self.__infrarrojo = not self.__infrarrojo
 
 class Luz(Dispositivo):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, tipo="luz", **kwargs)
+    def __init__(self, id, nombre, estado=False, intensidad=0):
+        super().__init__(id=id, nombre=nombre, tipo="luz", estado=estado)
+        self.__intensidad = intensidad
 
     def subir_intensidad(self, cantidad: int):
         if self.__intensidad is not None:
@@ -59,8 +61,10 @@ class Luz(Dispositivo):
             self.__intensidad = max(0, self.__intensidad - cantidad)
 
 class Electrodomestico(Dispositivo):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, tipo="electrodomestico", **kwargs)
+    def __init__(self, id, nombre, estado=False, volumen=50, intensidad=None):
+        super().__init__(id=id, nombre=nombre, tipo="electrodomestico", estado=estado)
+        self.__volumen = volumen
+        self.__intensidad = intensidad
 
     def subir_volumen(self, cantidad: int):
         if self.__volumen is not None:
