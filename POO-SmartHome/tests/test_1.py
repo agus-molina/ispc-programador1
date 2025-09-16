@@ -68,3 +68,18 @@ def test_mostrar_datos(user):
     datos = user.mostrar_datos()
     assert datos["username"] == "Pepe"
     assert datos["rol"] == "estandar"
+
+# ---------- TEST Camara ----------
+
+def test_camara_interruptor_infrarrojo():
+    c = Camara(1, "frontal", infrarrojo=False)
+    # Valor inicial
+    assert c._Camara__infrarrojo is False  
+
+    # Alterna una vez
+    c.interruptor_infrarrojo()
+    assert c._Camara__infrarrojo is True  
+
+    # Alterna otra vez
+    c.interruptor_infrarrojo()
+    assert c._Camara__infrarrojo is False  
