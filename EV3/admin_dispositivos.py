@@ -2,7 +2,7 @@
 MODULO QUE MANEJA DISPOSITIVOS
 '''
 
-import EV3.datos as datos
+import datos
 
 def listar_dispositivos():
     if not datos.inventario:
@@ -27,11 +27,11 @@ def buscar_dispositivo(nombre):
 
 def agregar_dispositivo():
     nombre = input('Ingresa el Nombre del Dispositivo a vincular: ').strip().lower()
-    tipo = input('Ingresa el tipo de dispositivo (ELECTRODOMESTICO / LUCES / CAMARA): ').strip().lower()
+    tipo = input('Ingresa el tipo de dispositivo (ELECTRODOMESTICO / LUZ / CAMARA): ').strip().lower()
 
-    tipos_validos = {"electrodomestico", "luces", "camara", "luz"}  # admito singular y plural
+    tipos_validos = {"electrodomestico", "camara", "luz"}
     if tipo not in tipos_validos:
-        print("Tipo inválido. Use ELECTRODOMESTICO / LUCES / CAMARA.")
+        print("Tipo inválido. Use ELECTRODOMESTICO / LUZ / CAMARA.")
         return
 
     def leer_numero_en_rango(prompt, minimo=0, maximo=100):
@@ -50,10 +50,10 @@ def agregar_dispositivo():
     dispositivo = {
         "id": datos.contador_id,
         "nombre": nombre,
-        "tipo": "luz" if tipo == "luces" else tipo,  # normalizo a singular
+        "tipo": tipo,
         "estado": estado
     }
-    if tipo in ("luces", "luz", "electrodomestico"):
+    if tipo in ("luz", "electrodomestico"):
         intensidad = leer_numero_en_rango("Intensidad (0-100): ")
         if intensidad is None:
             return

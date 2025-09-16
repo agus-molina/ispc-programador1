@@ -2,9 +2,9 @@
 MODULO CON PROPIEDADES EN COMUN PARA TODOS LOS USUARIOS
 '''
 
-import EV3.datos as datos
+import datos
 
-# Cuando no existe el usuario lo registra /NO TIENE VALIDACIONES O LIMITE DE CARACTERES
+# Cuando no existe el usuario lo registra
 def registrar_usuario(primer_usuario=False):
     print("\n*** Registro de Usuario ***")
     nombre = input("Nombre completo: ").strip()
@@ -27,7 +27,7 @@ def registrar_usuario(primer_usuario=False):
     print(f"Usuario {'Admin' if rol == 'admin' else 'Estándar'} registrado con éxito.")
     return True
 
-# Login sencillo sin validaciones o limites
+# Login sencillo
 def login_usuario():
     print("\n*** Iniciar Sesión ***")
     username = input("Usuario: ").strip()
@@ -46,7 +46,7 @@ def mostrar_datos_personales(usuario):
         Usuario: {usuario['username']}
         Rol: {usuario['rol']}''')
 
-# cambia rol a admin pero no avisa si el usuario elegido no existe
+# cambia rol a admin
 def cambiar_rol(eleccion):
     for usuario in datos.usuarios:
         if eleccion == usuario["nombre"] or eleccion == usuario["username"]:

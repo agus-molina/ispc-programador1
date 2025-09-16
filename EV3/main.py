@@ -13,30 +13,22 @@ Permitir modificar el rol de un usuario.
 ** El usuario Admin, puede ser el primer usuario que se registra.**
  '''
 
-from EV3.automatizaciones import (
+from automatizaciones import (
     modo_actual_programa,
     ajuste_automatico
 )
-from EV3.menu import menu_admin, menu_usuario_estandar
-from EV3.usuarios import (
+from menu import menu_admin, menu_usuario_estandar
+from usuarios import (
     registrar_usuario,
     login_usuario
 )
-
-import EV3.datos as datos
-
+import datos
 
 def main():
 
     print('*** BIENVENIDO AL SISTEMA SMART SOLUTIONS ***')
-
-   
     login = False
     usuario_actual = None
-
-    modo = modo_actual_programa()
-    ajuste_automatico(modo)
-    print(f'*** El sistema está en modo {modo} ***')
 
     while True:
         # Flujo por si no hay usuarios registrados
@@ -63,6 +55,11 @@ def main():
 
     # Menú segun rol
         while login:
+            #controla si hay alguna automatizacion para activar
+            modo = modo_actual_programa()
+            if modo:
+                ajuste_automatico(modo)
+                print(f'*** El sistema está en modo {modo} ***')
             try:
                 if usuario_actual["rol"] == "admin":
                     accion = menu_admin(modo)

@@ -1,4 +1,4 @@
-# Datos globales compartidos entre modulos
+# Variables non local compartidas entre modulos
 usuarios = []
 inventario = []
 contador_id = 0

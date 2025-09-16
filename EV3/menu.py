@@ -2,14 +2,14 @@
 MODULO DE PRESENTACION DEL MENU
 '''
 
-from EV3.admin_dispositivos import (
+from admin_dispositivos import (
     listar_dispositivos,
     buscar_dispositivo,
     agregar_dispositivo,
     eliminar_dispositivo
 )
-from EV3.automatizaciones import ajuste_automatico
-from EV3.usuarios import mostrar_datos_personales, cambiar_rol
+from automatizaciones import ajuste_automatico
+from usuarios import mostrar_datos_personales, cambiar_rol
 
 def menu_usuario_estandar(usuario, modo):
     print(f'''\n--- Menú Usuario: {usuario['nombre']} ---
@@ -69,7 +69,10 @@ def menu_admin(modo):
     opcion = int(opcion_txt)
     match opcion:
         case 1:
-            print(f'El sistema esta en modo {modo}!')
+            if modo:
+                print(f'El sistema esta en modo {modo}!')
+            else:
+                print('En este momento no hay automatizaciones activas!')
             listar_dispositivos()
             return True
         case 2:
