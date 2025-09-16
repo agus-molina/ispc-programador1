@@ -27,6 +27,12 @@ class Automatizacion:
     @property
     def hora_desactivacion(self) -> datetime.time:
             return self.__hora_desactivacion
+    
+    def activar(self):
+          self.__estado = True
+
+    def desactivar(self):
+          self.__estado = False
 
     def revisar_hora(self):
         hora_actual = datetime.now().time()
