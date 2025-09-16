@@ -11,8 +11,7 @@ from EV3.admin_dispositivos import (
 from EV3.automatizaciones import ajuste_automatico
 from EV3.usuarios import mostrar_datos_personales, cambiar_rol
 
-def menu_usuario_estandar(usuario, modo, inventario):
-
+def menu_usuario_estandar(usuario, modo):
     print(f'''\n--- Menú Usuario: {usuario['nombre']} ---
         1. Consultar datos personales
         2. Ejecutar automatización
@@ -20,12 +19,13 @@ def menu_usuario_estandar(usuario, modo, inventario):
         4. Cerrar sesión
         5. Salir del sistema
         ''')
-    
+
     opcion_txt = input("Seleccione una opción: ").strip()
     if not opcion_txt.isdigit():
         print("Opción inválida.")
         return True
     opcion = int(opcion_txt)
+
     match opcion:
         case 1:
             mostrar_datos_personales(usuario)
@@ -36,7 +36,7 @@ def menu_usuario_estandar(usuario, modo, inventario):
             if resultados:
                 for r in resultados:
                     print("-", r)
-            else: 
+            else:
                 print("No hay dispositivos para automatizar")
             return True
         case 3:
@@ -51,6 +51,7 @@ def menu_usuario_estandar(usuario, modo, inventario):
         case _:
             print("Opción inválida.")
             return True
+
 
 def menu_admin(modo):
 

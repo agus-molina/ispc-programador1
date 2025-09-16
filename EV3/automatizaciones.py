@@ -16,17 +16,19 @@ def ajuste_automatico(modo):
     for dispositivo in datos.inventario:
         tipo = dispositivo.get("tipo", "").lower()
         if modo == "NOCHE":
-            if tipo in ["electrodomestico", "luces"]:
+            if tipo in ("electrodomestico", "luces", "luz"):
                 dispositivo["estado"] = False
                 mensajes.append(f"El dispositivo {dispositivo['nombre']} se ha apagado.")
             elif tipo == "camara":
                 dispositivo["estado"] = True
-                mensajes.append(f"La cámara {dispositivo['nombre']} se ha activado.")
-        else:  # DÍA
-            if tipo in ["electrodomestico", "luces"]:
+                dispositivo["infrarrojo"] = True
+                mensajes.append(f"La cámara {dispositivo['nombre']} se ha activado con infrarrojo.")
+        else:
+            if tipo in ("electrodomestico", "luces", "luz"):
                 dispositivo["estado"] = True
                 mensajes.append(f"El dispositivo {dispositivo['nombre']} se ha encendido.")
             elif tipo == "camara":
                 dispositivo["estado"] = False
-                mensajes.append(f"La cámara {dispositivo['nombre']} se ha apagado.")
+                dispositivo["infrarrojo"] = False
+                mensajes.append(f"La cámara {dispositivo['nombre']} se ha apagado y desactivado infrarrojo.")
     return mensajes

@@ -28,17 +28,49 @@ def buscar_dispositivo(nombre):
 def agregar_dispositivo():
     nombre = input('Ingresa el Nombre del Dispositivo a vincular: ').strip().lower()
     tipo = input('Ingresa el tipo de dispositivo (ELECTRODOMESTICO / LUCES / CAMARA): ').strip().lower()
+
+    tipos_validos = {"electrodomestico", "luces", "camara", "luz"}  # admito singular y plural
+    if tipo not in tipos_validos:
+        print("Tipo inválido. Use ELECTRODOMESTICO / LUCES / CAMARA.")
+        return
+
+    def leer_numero_en_rango(prompt, minimo=0, maximo=100):
+        txt = input(prompt).strip()
+        if not txt.isdigit():
+            print("Valor inválido. Debe ser numérico.")
+            return None
+        n = int(txt)
+        if n < minimo or n > maximo:
+            print(f"Valor fuera de rango ({minimo}–{maximo}).")
+            return None
+        return n
+    estado_txt = input('¿Está encendido? (s/n): ').strip().lower()
+    estado = estado_txt in ("s", "si", "sí", "y", "yes")
+
     dispositivo = {
-                    "id": datos.contador_id,
-                   "nombre": nombre,
-                   "tipo": tipo,
-                   "estado": False,
-                   "intensidad": 1,
-                   "volumen": 0,
-                   "infrarrojo": False
-                   }
+        "id": datos.contador_id,
+        "nombre": nombre,
+        "tipo": "luz" if tipo == "luces" else tipo,  # normalizo a singular
+        "estado": estado
+    }
+    if tipo in ("luces", "luz", "electrodomestico"):
+        intensidad = leer_numero_en_rango("Intensidad (0-100): ")
+        if intensidad is None:
+            return
+        dispositivo["intensidad"] = intensidad
+
+    if tipo == "electrodomestico":
+        volumen = leer_numero_en_rango("Volumen (0-100): ")
+        if volumen is None:
+            return
+        dispositivo["volumen"] = volumen
+    if tipo == "camara":
+        ir_txt = input('¿Infrarrojo activado? (s/n): ').strip().lower()
+        dispositivo["infrarrojo"] = ir_txt in ("s", "si", "sí", "y", "yes")
+
     datos.inventario.append(dispositivo)
     datos.contador_id += 1
+
     print(f'''Dispositivo vinculado con Éxito:
          ID: {dispositivo.get('id')}
          Nombre: {dispositivo.get('nombre')}
@@ -47,6 +79,7 @@ def agregar_dispositivo():
          Intensidad: {dispositivo.get('intensidad')}
          Volumen: {dispositivo.get('volumen')}
          Infrarrojo: {dispositivo.get('infrarrojo')}''')
+
     
 # Validación Función eliminar dispositivo
 def eliminar_dispositivo(id_dispositivo):
@@ -57,5 +90,3 @@ def eliminar_dispositivo(id_dispositivo):
             return True
     print("No se encontró un dispositivo con ese ID. No se pudo eliminar.")
     return False
-
-
