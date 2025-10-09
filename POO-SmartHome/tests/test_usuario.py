@@ -12,13 +12,13 @@ def test_autenticar_incorrecto(user):
     assert user.autenticar("abcd") is False
 
 def test_alternar_rol(user):
-    assert user.rol == "estandar"
+    assert user.rol._value_ == "estandar"
     user.alternar_rol()
-    assert user.rol == "admin"
+    assert user.rol._value_ == "admin"
     user.alternar_rol()
-    assert user.rol == "estandar"
+    assert user.rol._value_ == "estandar"
 
-def test_mostrar_datos(user):
+def test_mostrar_datpyos(user):
     datos = user.mostrar_datos()
     assert datos["username"] == "Pepe"
     assert datos["rol"] == "estandar"

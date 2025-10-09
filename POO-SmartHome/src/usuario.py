@@ -1,8 +1,14 @@
+from enum import Enum
+
+class RolUsuario(Enum):
+    ESTANDAR = "estandar"
+    ADMIN = "admin"
+
 class Usuario:
-    def __init__(self, id, username, contraseña, correo, rol="estandar"):
-        self.__id = id
+    def __init__(self, id: int, username: str, contrasena: str, correo: str, rol=RolUsuario.ESTANDAR):
+
         self.__username = username
-        self.__contraseña = contraseña
+        self.__contrasena = contrasena  
         self.__correo = correo
         self.__rol = rol
 
@@ -19,21 +25,21 @@ class Usuario:
         return self.__correo
     
     @property
-    def rol(self) -> str:
+    def rol(self) -> RolUsuario:  # devuelve el enum, no un str
         return self.__rol
     
-    def autenticar(self, input_contraseña: str) -> bool:
-        """Verifica si la contraseña ingresada coincide con la registrada."""
-        return self.__contraseña == input_contraseña
+    def autenticar(self, input_contrasena: str) -> bool:
+        """Verifica si la contrasena ingresada coincide con la registrada."""
+        return self.__contrasena == input_contrasena
     
     def alternar_rol(self):
-        if self.__rol == "admin":
-            self.__rol = "estandar"
+        if self.__rol == RolUsuario.ADMIN:
+            self.__rol = RolUsuario.ESTANDAR
         else:
-            self.__rol = "admin"
+            self.__rol = RolUsuario.ADMIN
 
     def mostrar_datos(self) -> dict:
         return {
             "username": self.__username,
-            "rol": self.__rol
+            "rol": self.__rol.value              #.value para obtener el valor del enum como cadena string legible
         }
