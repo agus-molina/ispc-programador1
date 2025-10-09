@@ -1,6 +1,6 @@
 import datetime
 import pytest
-from src.automatizacion import Automatizacion
+from app.dominio.entities.automatizacion import Automatizacion
 
 @pytest.fixture
 def auto():
