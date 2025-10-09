@@ -1,5 +1,5 @@
 import pytest
-from src.usuario import Usuario
+from app.dominio.entities.usuario import Usuario
 
 @pytest.fixture
 def user():
