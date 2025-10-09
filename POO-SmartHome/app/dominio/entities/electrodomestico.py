@@ -1,4 +1,4 @@
-from dispositivo import Dispositivo 
+from app.dominio.entities.dispositivo import Dispositivo
 
 class Electrodomestico(Dispositivo):
     def __init__(self, id, nombre, estado=False, volumen=50, intensidad=None):

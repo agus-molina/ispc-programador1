@@ -1,5 +1,5 @@
 import pytest 
-from app.dominio.entities.camara import  Camara
+from app.dominio.entities.camara import Camara
 
 def test_camara():
     c = Camara(1, "frontal")

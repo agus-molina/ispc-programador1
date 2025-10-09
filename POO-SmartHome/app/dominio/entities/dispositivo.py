@@ -1,5 +1,3 @@
-
-
 class Dispositivo:
     def __init__(self,
                  id,

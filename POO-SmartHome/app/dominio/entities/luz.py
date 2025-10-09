@@ -1,4 +1,4 @@
-from dispositivo import Dispositivo
+from app.dominio.entities.dispositivo import Dispositivo
 
 class Luz(Dispositivo):
     def __init__(self, id, nombre, estado=False, intensidad=0):

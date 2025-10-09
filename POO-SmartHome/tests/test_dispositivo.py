@@ -1,5 +1,5 @@
 import pytest
-from app.dominio.entities.dispositivo import Dispositivo, Luz, Camara, Electrodomestico
+from app.dominio.entities.dispositivo import Dispositivo
 
 def test_encender_apagar():
     d = Dispositivo(1, "Lampara", "luz")
