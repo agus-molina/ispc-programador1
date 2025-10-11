@@ -1,5 +1,5 @@
-COMPILADOR ONLINE ELEGIDO: OneCompiler
-MOTOR DE BASES DE DATOS ELEGIDO: MySQL
+. COMPILADOR ONLINE ELEGIDO: OneCompiler
+. MOTOR DE BASES DE DATOS ELEGIDO: MySQL
 
 INSTRUCCIONES DE USO:
     Debido a que OneCompiler para MySQL no nos permite adjuntar archivos locales del computador,
@@ -20,4 +20,16 @@ INSTRUCCIONES DE USO:
      7- Por último hacer click en el botón RUN ubicado en la parte superior derecha.
 
      OneCompiler acepta el # como símbolo de comentario, por lo que fue el elegido para explicar que hace cada consulta
+
+El unico cambio DLL sería a la tabla de usuarios siguiendo las correcciones dadas de forma que el rol
+sea un ENUM en vez de solo string:
+
+    CREATE TABLE usuarios (
+        id_usuario INT NOT NULL AUTO_INCREMENT,
+        username VARCHAR(255) NOT NULL UNIQUE,
+        contrasena VARCHAR(255) NOT NULL,
+        correo VARCHAR(255) NOT NULL,
+        rol ENUM('admin', 'estandar') NOT NULL,
+        PRIMARY KEY (id_usuario)
+    );
 
