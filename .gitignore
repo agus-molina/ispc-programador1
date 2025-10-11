@@ -1,0 +1,13 @@
+# Ignorar carpeta de configuración de VS Code
+.vscode/
+
+# Ignorar cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar archivo de configuración local
+config.ini
+
+# Ignorar pytest cache
+.pytest_cache/
