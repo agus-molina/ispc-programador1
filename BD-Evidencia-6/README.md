@@ -1,35 +1,55 @@
-. COMPILADOR ONLINE ELEGIDO: OneCompiler
-. MOTOR DE BASES DE DATOS ELEGIDO: MySQL
+# Proyecto POO - SmartHome
 
-INSTRUCCIONES DE USO:
-    Debido a que OneCompiler para MySQL no nos permite adjuntar archivos locales del computador,
-    es necesario copiar el codigo de los scripts a dos archivos distintos dentro del editor online.
+## Compilador y motor de base de datos elegidos
 
-    - Link de editor ya preparado para su ejecución con código incorporado:
-        https://onecompiler.com/mysql/43z779gat
+- **Compilador online:** OneCompiler
+- **Motor de base de datos:** MySQL
 
-        (Hay que presionar el botón rosa que dice "RUN" para correr el código)
+---
 
-    - En caso de no funcionar el link, a continuación explicaremos como hacerlo manualmente:
-     1- Ingresar a https://onecompiler.com/
-     2- Seleccionar el motor MySQL
-     3- Borrar el código predefinido
-     4- Seleccionar el simbolo + que se encuentra del lado izquierdo de la página, seleccionar Add init schema, aceptar y borrar todo lo que aparece predefinido.
-     5- En el archivo init.sql pegar todo el script de DLL que sigue siendo el mismo de la evidencia anterior.
-     6- En el archivo queries.sql pegar el script de DML.
-     7- Por último hacer click en el botón RUN ubicado en la parte superior derecha.
+## Instrucciones de uso
 
-     OneCompiler acepta el # como símbolo de comentario, por lo que fue el elegido para explicar que hace cada consulta
+Debido a que **OneCompiler para MySQL** no permite adjuntar archivos locales, es necesario **copiar el código de los scripts** (DDL y DML) en dos archivos distintos dentro del editor online.
 
-El unico cambio DLL sería a la tabla de usuarios siguiendo las correcciones dadas de forma que el rol
-sea un ENUM en vez de solo string:
+---
 
-    CREATE TABLE usuarios (
-        id_usuario INT NOT NULL AUTO_INCREMENT,
-        username VARCHAR(255) NOT NULL UNIQUE,
-        contrasena VARCHAR(255) NOT NULL,
-        correo VARCHAR(255) NOT NULL,
-        rol ENUM('admin', 'estandar') NOT NULL,
-        PRIMARY KEY (id_usuario)
-    );
+### Usar el editor ya configurado
 
+**[Abrir editor en OneCompiler con código pre-cargado](https://onecompiler.com/mysql/43z779gat)**  
+
+> Luego de abrir el enlace, tocar el botón **rosa “RUN”** para ejecutar el código.
+
+---
+
+### Opción manual
+
+1. Ingresar a [https://onecompiler.com/](https://onecompiler.com/)
+2. Seleccionar el motor **MySQL**.
+3. Borrar el código predefinido que aparece.
+4. En el panel lateral izquierdo, presionar el **símbolo “+”** → seleccionar **“Add init schema”** → aceptar y borrar el contenido predefinido.
+5. En el archivo **`init.sql`**, pegar todo el script DDL (estructura de la base de datos).
+6. En el archivo **`queries.sql`**, pegar todo el script DML (consultas o inserciones de datos).
+7. Finalmente, hacer click en el botón **RUN** (ubicado arriba a la derecha).
+
+---
+
+- **Comentarios:**  
+  OneCompiler acepta el símbolo `#` como comentario en MySQL.  
+  Por eso, se utilizó `#` para explicar qué hace cada consulta dentro de los scripts.
+
+---
+
+## Cambio en el script DDL
+
+El único cambio respecto a la versión anterior es en la tabla **`usuarios`**:  
+Ahora el campo `rol` se define como un **ENUM** (en lugar de `VARCHAR`), para garantizar la consistencia de los valores permitidos.
+
+```sql
+CREATE TABLE usuarios (
+    id_usuario INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'estandar') NOT NULL,
+    PRIMARY KEY (id_usuario)
+);
