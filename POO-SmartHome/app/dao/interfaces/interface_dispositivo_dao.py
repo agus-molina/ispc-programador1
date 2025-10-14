@@ -12,11 +12,11 @@ class InterfaceDispositivoDAO(ABC):
         pass
 
     @abstractmethod
-    def create(self, dispositivo: Dispositivo, id_usuario: int):
+    def create(self, dispositivo: object, id_usuario: int):
         pass
 
     @abstractmethod
-    def update(self, dispositivo: Dispositivo):
+    def update(self, dispositivo: object):
         pass
 
     @abstractmethod
