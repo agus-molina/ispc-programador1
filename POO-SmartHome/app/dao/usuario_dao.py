@@ -46,7 +46,9 @@ class UsuarioDAO:
                 query = "SELECT id_usuario, username, contrasena, correo, rol FROM usuarios"
                 cursor.execute(query)
                 rows = cursor.fetchall()
-                return [Usuario(row[0], row[1], row[2], row[3], (RolUsuario.ADMIN if row[4] == "admin" else RolUsuario.ESTANDAR)) for row in rows]
+                if rows:
+                    return [Usuario(row[0], row[1], row[2], row[3], (RolUsuario.ADMIN if row[4] == "admin" else RolUsuario.ESTANDAR)) for row in rows]
+                return None
             except mysql.connector.Error as err:
                 raise err
 
