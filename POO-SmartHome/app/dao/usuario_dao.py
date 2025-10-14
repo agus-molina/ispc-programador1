@@ -25,6 +25,20 @@ class UsuarioDAO:
             except mysql.connector.Error as err:
                 raise err
 
+    def get_by_username(self, username:str) -> Optional[Usuario]:
+        with self.db_conn.connect_to_mysql() as conn:
+            try:
+                cursor = conn.cursor()
+                query = "SELECT id_usuario, username, contrasena, correo, rol FROM usuarios WHERE username=%s"
+                cursor.execute(query, (username,))
+                row = cursor.fetchone()
+                if row:
+                    rol = RolUsuario.ADMIN if row[4] == "admin" else RolUsuario.ESTANDAR
+                    return Usuario(row[0], row[1], row[2], row[3], rol)
+                return None
+            except mysql.connector.Error as err:
+                raise err
+
     def get_all(self) -> List[Usuario]:
         with self.db_conn.connect_to_mysql() as conn:
             try:
